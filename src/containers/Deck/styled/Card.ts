@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { Card } from 'semantic-ui-react'
 
-export default styled<any>(Card).attrs(({ visibleValue }) => ({
-  color: visibleValue ? 'green' : 'blue',
-}))`
+export default styled<any>(Card)`
   align-items: center;
-  display: flex;
+  background-color: transparent !important;
+  box-shadow: none !important;
   height: 80px;
   justify-content: center;
 `;

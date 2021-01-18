@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
+import { Transition } from 'semantic-ui-react';
 
 import { getCardValueCheckFuns } from '../../redux/game';
 
 import Card from './styled/Card';
 import CardGroup from './styled/CardGroup';
 import CardValue from './styled/CardValue';
+import CardWrapper from './styled/CardWrapper';
 import Container from './styled/Container';
 
 export type DeckProps = {
@@ -25,10 +27,22 @@ function Deck({ cards, onClick }: DeckProps): JSX.Element {
       <CardGroup itemsPerRow={4}>
         {cards.map((cardValue, cardIndex) => {
           const isVisible = isValueVisible(cardIndex);
+          const key = `card-${cardIndex}`;
 
           return (
-            <Card visibleValue={isVisible} onClick={() => { onClick(cardIndex) }} key={`card-${cardIndex}`}>
-              <CardValue visibleValue={isVisible}>{isVisible ? cardValue : '?'}</CardValue>
+            <Card visibleValue={isVisible} onClick={() => { if (!isVisible) onClick(cardIndex) }} key={key}>
+              <Transition.Group animation="horizontal flip" duration={500}>
+                {isVisible && (
+                  <CardWrapper>
+                    <CardValue visibleValue>{cardValue}</CardValue>
+                  </CardWrapper>
+                )}
+                {!isVisible && (
+                  <CardWrapper>
+                    <CardValue>?</CardValue>
+                  </CardWrapper>
+                )}
+              </Transition.Group>
             </Card>
           );
         })}
