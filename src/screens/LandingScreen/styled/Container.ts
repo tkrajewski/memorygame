@@ -1,4 +1,10 @@
 import styled from 'styled-components';
-import { Container as SemanticContainer } from 'semantic-ui-react';
 
-export default styled(SemanticContainer)``;
+import Container from '../../../components/Container';
+
+export default styled(Container)`
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+`;

@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 import GameScreen from '../screens/GameScreen';
 import LandingScreen from '../screens/LandingScreen';
@@ -18,23 +19,25 @@ function Routes(): JSX.Element {
     <BrowserRouter>
       <AppNavigation />
 
-      <Switch>
-        <Route path="/leaderboards">
-          <LeaderboardsScreen />
-        </Route>
-        <Route path="/game">
-          <GameScreen />
-        </Route>
-        <Route path="/register">
-          <RegisterScreen />
-        </Route>
-        <Route path="/">
-          <LandingScreen />
-        </Route>
-        <Route path="/*">
-          <NotFoundScreen />
-        </Route>
-      </Switch>
+      <AnimatePresence exitBeforeEnter>
+        <Switch>
+          <Route path="/leaderboards">
+            <LeaderboardsScreen />
+          </Route>
+          <Route path="/game">
+            <GameScreen />
+          </Route>
+          <Route path="/register">
+            <RegisterScreen />
+          </Route>
+          <Route path="/">
+            <LandingScreen />
+          </Route>
+          <Route path="/*">
+            <NotFoundScreen />
+          </Route>
+        </Switch>
+      </AnimatePresence>
     </BrowserRouter>
   );
 }
