@@ -18,7 +18,7 @@ function Scores(): JSX.Element {
       exit={{ opacity: 0, translateX: '-25px' }}
     >
       <InnerContainer>
-        <Score>CURRENT SCORE: {score}</Score>
+        <Score>PAIR FOUND: {score}</Score>
         <Score>MAX SCORE: {maxScore}</Score>
         <Score>TIME: {time}s</Score>
       </InnerContainer>

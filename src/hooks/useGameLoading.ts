@@ -5,21 +5,21 @@ import { loadGame, loadDone, selectIsLoading } from '../redux/game';
 
 var hameScreenTimeoutHandler: any = null;
 
-export default function useGameLoading() {
+export default function useGameLoading(modifier: number) {
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(loadGame());
+    dispatch(loadGame(modifier));
 
     hameScreenTimeoutHandler = setTimeout(() => {
       dispatch(loadDone());
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearTimeout(hameScreenTimeoutHandler);
     };
-  }, [dispatch]);
+  }, [dispatch, modifier]);
 
   return {
     isLoading,

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import Deck from '../../containers/Deck';
+import SummaryButton from '../../containers/SummaryButton';
 import useGameLoading from '../../hooks/useGameLoading';
 import useGameEngine from '../../hooks/useGameEngine';
 
@@ -9,10 +10,10 @@ import InnerContainer from './styled/InnerContainer';
 import Container from './styled/Container';
 import LoaderContainer from './styled/LoaderContainer';
 
-
 function GameScreen(): JSX.Element {
-  const { cards, onCardClick } = useGameEngine();
-  const { isLoading } = useGameLoading();
+  const modifier = 4;
+  const { cards, isFinished, onCardClick } = useGameEngine();
+  const { isLoading } = useGameLoading(modifier);
 
   return (
     <Container
@@ -32,6 +33,7 @@ function GameScreen(): JSX.Element {
             onClick={onCardClick}
           />
         )}
+        {isFinished && <SummaryButton />}
       </InnerContainer>
     </Container>
   );
