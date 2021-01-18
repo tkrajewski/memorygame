@@ -1,31 +1,18 @@
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { Segment } from 'semantic-ui-react';
 
-import { loadGame, loadDone, selectIsLoading } from '../../redux/game';
+import Deck from '../../containers/Deck';
+import useGameLoading from '../../hooks/useGameLoading';
+import useGameEngine from '../../hooks/useGameEngine';
 
 import Loader from './styled/Loader';
 import InnerContainer from './styled/InnerContainer';
 import Container from './styled/Container';
 import LoaderContainer from './styled/LoaderContainer';
 
-var hameScreenTimeoutHandler: any = null;
 
 function GameScreen(): JSX.Element {
-  const isLoading = useSelector(selectIsLoading);
-  const dispatch = useDispatch();
-
-  React.useEffect(() => {
-    dispatch(loadGame());
-
-    hameScreenTimeoutHandler = setTimeout(() => {
-      dispatch(loadDone());
-    }, 3000);
-
-    return () => {
-      clearTimeout(hameScreenTimeoutHandler);
-    };
-  }, [dispatch]);
+  const { cards } = useGameEngine();
+  const { isLoading } = useGameLoading();
 
   return (
     <Container
@@ -34,9 +21,12 @@ function GameScreen(): JSX.Element {
       exit={{ opacity: 0, translateX: '-25px' }}
     >
       <InnerContainer>
-        <LoaderContainer active inverted>
-          {isLoading && <Loader inverted content='Loading' />}
-        </LoaderContainer>
+        {isLoading && (
+          <LoaderContainer active inverted>
+            <Loader inverted content='Loading' />
+          </LoaderContainer>
+        )}
+        {!isLoading && cards.length > 0 && <Deck />}
       </InnerContainer>
     </Container>
   );
