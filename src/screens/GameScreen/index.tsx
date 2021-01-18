@@ -11,7 +11,7 @@ import LoaderContainer from './styled/LoaderContainer';
 
 
 function GameScreen(): JSX.Element {
-  const { cards } = useGameEngine();
+  const { cards, onCardClick } = useGameEngine();
   const { isLoading } = useGameLoading();
 
   return (
@@ -26,7 +26,12 @@ function GameScreen(): JSX.Element {
             <Loader inverted content='Loading' />
           </LoaderContainer>
         )}
-        {!isLoading && cards.length > 0 && <Deck />}
+        {!isLoading && cards.length > 0 && (
+          <Deck
+            cards={cards}
+            onClick={onCardClick}
+          />
+        )}
       </InnerContainer>
     </Container>
   );
