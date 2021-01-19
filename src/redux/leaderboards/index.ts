@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import sortScores from '../../utils/sort';
-import { readLeaderboards } from '../../utils/storage';
+import { readLeaderboards, saveLeaderboards } from '../../utils/storage';
 
 export const gameSlice = createSlice({
   name: 'leaderboards',
@@ -11,6 +11,7 @@ export const gameSlice = createSlice({
   reducers: {
     pushToLeaderboards: (state, { payload }) => {
       state.leaderboards = sortScores([...state.leaderboards, payload]);
+      saveLeaderboards(state.leaderboards);
     },
   },
 })

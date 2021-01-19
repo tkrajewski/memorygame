@@ -29,7 +29,7 @@ function ScoresTable({ leaderboards }: ScoresTableProps): JSX.Element {
             {leaderboards.map((stat: any, index: number) => (
               <Table.Row key={`score-row-${index}`}>
                 <Table.Cell>
-                  <Label ribbon>{stat.nickname}</Label>
+                  <Label ribbon={index === 0}>{stat.nickname}</Label>
                 </Table.Cell>
                 <Table.Cell>{stat.score}</Table.Cell>
                 <Table.Cell>{stat.time}</Table.Cell>

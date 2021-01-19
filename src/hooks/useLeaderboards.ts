@@ -14,7 +14,7 @@ export default function useLeaderboards() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatchEvent(pushToLeaderboards({
+    dispatch(pushToLeaderboards({
       score: gameScore,
       nickname,
       time,
