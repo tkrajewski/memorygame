@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
-import { loadGame, loadDone, selectIsLoading } from '../redux/game';
+import { loadGame, loadDone, selectIsLoading, selectModifier } from '../redux/game';
 
 var hameScreenTimeoutHandler: any = null;
 
-export default function useGameLoading(modifier: number) {
+export default function useGameLoading() {
+  const modifier = useSelector(selectModifier);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 

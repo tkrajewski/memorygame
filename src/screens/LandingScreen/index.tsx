@@ -19,7 +19,7 @@ function LandingScreen(): JSX.Element {
       <InnerContainer>
         <Title>CHECK YOUR MEMORY</Title>
         <Button onClick={() => {
-          history.push('/game');
+          history.push('/register');
         }}>
           START GAME
         </Button>

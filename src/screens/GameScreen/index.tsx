@@ -11,9 +11,8 @@ import Container from './styled/Container';
 import LoaderContainer from './styled/LoaderContainer';
 
 function GameScreen(): JSX.Element {
-  const modifier = 4;
   const { cards, isFinished, onCardClick } = useGameEngine();
-  const { isLoading } = useGameLoading(modifier);
+  const { isLoading } = useGameLoading();
 
   return (
     <Container

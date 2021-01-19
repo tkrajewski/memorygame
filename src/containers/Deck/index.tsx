@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Transition } from 'semantic-ui-react';
 
-import { getCardValueCheckFuns } from '../../redux/game';
+import { getCardValueCheckFuns, selectModifier } from '../../redux/game';
 
 import Card from './styled/Card';
 import CardGroup from './styled/CardGroup';
@@ -17,6 +17,7 @@ export type DeckProps = {
 
 function Deck({ cards, onClick }: DeckProps): JSX.Element {
   const isValueVisible = useSelector(getCardValueCheckFuns);
+  const modifier = useSelector(selectModifier);
 
   return (
     <Container
@@ -24,7 +25,7 @@ function Deck({ cards, onClick }: DeckProps): JSX.Element {
       animate={{ opacity: 1, translateX: '0px' }}
       exit={{ opacity: 0, translateX: '-25px' }}
     >
-      <CardGroup itemsPerRow={4}>
+      <CardGroup itemsPerRow={modifier}>
         {cards.map((cardValue, cardIndex) => {
           const isVisible = isValueVisible(cardIndex);
           const key = `card-${cardIndex}`;
