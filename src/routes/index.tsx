@@ -21,6 +21,9 @@ function Routes(): JSX.Element {
 
       <AnimatePresence exitBeforeEnter>
         <Switch>
+          <Route exact path="/">
+            <LandingScreen />
+          </Route>
           <Route path="/leaderboards">
             <LeaderboardsScreen />
           </Route>
@@ -30,10 +33,7 @@ function Routes(): JSX.Element {
           <Route path="/register">
             <RegisterScreen />
           </Route>
-          <Route path="/">
-            <LandingScreen />
-          </Route>
-          <Route path="/*">
+          <Route path="*">
             <NotFoundScreen />
           </Route>
         </Switch>

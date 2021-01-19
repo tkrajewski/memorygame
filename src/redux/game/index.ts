@@ -11,6 +11,7 @@ export const gameSlice = createSlice({
     successIndex: [],
     isLoading: false,
     score: 0,
+    gameScore: null,
     maxScore: readMaxScore(),
     modifier: 4,
     time: 0,
@@ -51,6 +52,7 @@ export const gameSlice = createSlice({
       state.successIndex = [];
       state.isLoading = false;
       state.score = 0;
+      state.gameScore = null;
       state.maxScore = readMaxScore();
       state.modifier = 0;
       state.time  = 0;
@@ -58,15 +60,22 @@ export const gameSlice = createSlice({
     setModifier: (state, { payload }) => {
       state.modifier = parseInt(payload, 10);
     },
+    incTimer: state => {
+      state.time = state.time + 1;
+    },
+    countTheScores: state => {
+      (state.gameScore as unknown) = state.score * 100 - state.time;
+    },
   },
 })
 
-export const { clear, loadGame, loadDone, setVisible, setModifier, clearVisible } = gameSlice.actions
+export const { countTheScores, incTimer, clear, loadGame, loadDone, setVisible, setModifier, clearVisible } = gameSlice.actions
 
 export const selectIsLoading = (state: any) => state?.game?.isLoading;
 export const selectScore = (state: any) => state?.game?.score;
 export const selectMaxScore = (state: any) => state?.game?.maxScore;
 export const selectTime = (state: any) => state?.game?.time;
+export const selectGameScore = (state: any) => state?.game?.gameScore;
 export const selectCards = (state: any) => state?.game?.cards;
 export const selectSuccessIndex = (state: any) => state?.game?.successIndex;
 export const selectIsFinished = (state: any) => selectCards(state).length !== 0 && selectCards(state).length === selectSuccessIndex(state).length;

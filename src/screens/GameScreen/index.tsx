@@ -11,7 +11,7 @@ import Container from './styled/Container';
 import LoaderContainer from './styled/LoaderContainer';
 
 function GameScreen(): JSX.Element {
-  const { cards, isFinished, onCardClick } = useGameEngine();
+  const { cards, onCardClick, incrementTimer, showButton, isFinished } = useGameEngine();
   const { isLoading } = useGameLoading();
 
   return (
@@ -30,9 +30,11 @@ function GameScreen(): JSX.Element {
           <Deck
             cards={cards}
             onClick={onCardClick}
+            incrementTimer={incrementTimer}
+            isFinished={isFinished}
           />
         )}
-        {isFinished && <SummaryButton />}
+        {showButton && <SummaryButton />}
       </InnerContainer>
     </Container>
   );

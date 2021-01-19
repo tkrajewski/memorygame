@@ -1,11 +1,13 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 
+import { selectGameScore } from '../../redux/game';
 import Container from './styled/Container';
 import InnerContainer from './styled/InnerContainer';
 import Text from './styled/Text';
 
 function YourScore(): JSX.Element {
-  const gameScore = 123;
+  const gameScore = useSelector(selectGameScore);
 
   return (
     <Container

@@ -11,13 +11,32 @@ import CardWrapper from './styled/CardWrapper';
 import Container from './styled/Container';
 
 export type DeckProps = {
+  isFinished: boolean;
   cards: number[];
+  incrementTimer(): any;
   onClick(cardIndex: number): any;
 };
 
-function Deck({ cards, onClick }: DeckProps): JSX.Element {
+var deckIntervalHandler: any = null;
+
+function Deck({ isFinished, cards, onClick, incrementTimer }: DeckProps): JSX.Element {
   const isValueVisible = useSelector(getCardValueCheckFuns);
   const modifier = useSelector(selectModifier);
+
+  React.useEffect(() => {
+    clearInterval(deckIntervalHandler);
+    deckIntervalHandler = setInterval(() => {
+      incrementTimer();
+    }, 1000);
+
+    if (isFinished) {
+      clearInterval(deckIntervalHandler);
+    }
+
+    return () => {
+      clearInterval(deckIntervalHandler);
+    };
+  }, [incrementTimer, isFinished]);
 
   return (
     <Container

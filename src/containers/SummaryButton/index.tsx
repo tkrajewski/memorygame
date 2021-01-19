@@ -13,7 +13,9 @@ function SummaryButton(): JSX.Element {
       animate={{ opacity: 1, translateX: '0px' }}
       exit={{ opacity: 0, translateY: '-30px' }}
     >
-      <Button onClick={() => history.push('/leaderboards')}>SEE SCORES</Button>
+      <Button onClick={() => {
+        history.push('/leaderboards')
+      }}>SEE SCORES</Button>
     </Container>
   );
 }

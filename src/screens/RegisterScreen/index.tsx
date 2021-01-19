@@ -23,7 +23,10 @@ function RegisterScreen(): JSX.Element {
   };
 
   const onChange = (_: any, { name, value }: any) => {
-    setForm({ [name]: value });
+    setForm({
+      ...formData,
+      [name]: value
+    });
   }
 
   return (

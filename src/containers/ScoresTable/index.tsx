@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, Label, Menu, Table } from 'semantic-ui-react';
+import { Label, Table } from 'semantic-ui-react';
 
 import Container from './styled/Container';
 import InnerContainer from './styled/InnerContainer';
