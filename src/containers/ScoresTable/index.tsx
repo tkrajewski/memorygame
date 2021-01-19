@@ -4,7 +4,11 @@ import { Label, Table } from 'semantic-ui-react';
 import Container from './styled/Container';
 import InnerContainer from './styled/InnerContainer';
 
-function ScoresTable(): JSX.Element {
+export type ScoresTableProps = {
+  leaderboards: any;
+};
+
+function ScoresTable({ leaderboards }: ScoresTableProps): JSX.Element {
   return (
     <Container
       initial={{ opacity: 0, translateX: '-20px' }}
@@ -22,23 +26,15 @@ function ScoresTable(): JSX.Element {
           </Table.Header>
 
           <Table.Body>
-            <Table.Row>
-              <Table.Cell>
-                <Label ribbon>First</Label>
-              </Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Cell</Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Cell</Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-            </Table.Row>
+            {leaderboards.map((stat: any, index: number) => (
+              <Table.Row key={`score-row-${index}`}>
+                <Table.Cell>
+                  <Label ribbon>{stat.nickname}</Label>
+                </Table.Cell>
+                <Table.Cell>{stat.score}</Table.Cell>
+                <Table.Cell>{stat.time}</Table.Cell>
+              </Table.Row>
+            ))}
           </Table.Body>
         </Table>
       </InnerContainer>

@@ -5,8 +5,11 @@ import Container from './styled/Container';
 import PlayAgain from '../../containers/PlayAgain';
 import ScoresTable from '../../containers/ScoresTable';
 import YourScore from '../../containers/YourScore';
+import useLeaderboards from '../../hooks/useLeaderboards';
 
 function LeaderboardsScreen(): JSX.Element {
+  const { leaderboards } = useLeaderboards();
+
   return (
     <Container
       initial={{ opacity: 0, translateX: '-20px' }}
@@ -15,7 +18,7 @@ function LeaderboardsScreen(): JSX.Element {
     >
       <InnerContainer>
         <YourScore />
-        <ScoresTable />
+        <ScoresTable leaderboards={leaderboards} />
         <PlayAgain />
       </InnerContainer>
     </Container>

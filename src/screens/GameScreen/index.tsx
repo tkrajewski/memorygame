@@ -11,7 +11,13 @@ import Container from './styled/Container';
 import LoaderContainer from './styled/LoaderContainer';
 
 function GameScreen(): JSX.Element {
-  const { cards, onCardClick, incrementTimer, showButton, isFinished } = useGameEngine();
+  const {
+    cards,
+    onCardClick,
+    incrementTimer,
+    showButton,
+    isFinished,
+  } = useGameEngine();
   const { isLoading } = useGameLoading();
 
   return (

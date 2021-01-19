@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import generate from '../../utils/generate';
-import { readMaxScore } from '../../utils/storage';
+import { readMaxScore, writeMaxScore } from '../../utils/storage';
 
 export const gameSlice = createSlice({
   name: 'game',
@@ -64,7 +64,13 @@ export const gameSlice = createSlice({
       state.time = state.time + 1;
     },
     countTheScores: state => {
-      (state.gameScore as unknown) = state.score * 100 - state.time;
+      const gameScore = state.score * 100 - state.time;
+
+      if (gameScore > state.maxScore) {
+        writeMaxScore(gameScore);
+      }
+
+      (state.gameScore as unknown) = gameScore;
     },
   },
 })
